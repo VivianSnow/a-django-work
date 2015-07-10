@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Detail Admin - User list</title>
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+    <!-- bootstrap -->
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/elements.css" />
+    <link rel="stylesheet" type="text/css" href="css/icons.css" />
+
+    <!-- libraries -->
+    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="css/compiled/user-list.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/compiled/user-profile.css" type="text/css" media="screen" />
+
+    <!-- open sans font -->
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+
+<!-- navbar -->
+<div class="navbar navbar-inverse">
+<div class="navbar-inner">
+<button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+
+<a class="brand" href="index.html"><img src="img/logo.png" /></a>
+
+<ul class="nav pull-right">
+<li class="settings hidden-phone">
+<a href="signin.html" role="button">
+<i class="icon-share-alt"></i>
+</a>
+</li>
+<li class="dropdown-toggle hidden-phone" data-toggle="dropdown" font-color=white>
+退出登录
+</li>
+</ul>
+</div>
+</div>
+<!-- end navbar -->
+
+<!-- sidebar -->
+<div id="sidebar-nav">
+<ul id="dashboard-menu">
+<li>
+<a href="t-index.html">
+<i class="icon-home"></i>
+<span>首页</span>
+</a>
+</li>
+<li>
+<a href="t-grade-list.html">
+<i class="icon-signal"></i>
+<span>成绩管理</span>
+</a>
+</li>
+<li class="active">
+<div class="pointer">
+<div class="arrow"></div>
+<div class="arrow_border"></div>
+</div>
+<a href="t-course-list.html">
+<i class="icon-edit"></i>
+<span>课程管理</span>
+</a>
+</li>
+<li>
+<a href="t-profile.html">
+<i class="icon-cog"></i>
+<span>我的信息</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- end sidebar -->
+
+
+	<!-- main container -->
+    <div class="content">
+        <div class="container-fluid">
+        
+            <div id="pad-wrapper" class="user-profile">
+                <div class="row-fluid header">
+                    <h3>课程管理</h3>
+                </div>
+                <!--drop list-->
+                <div class="span10 pull-right">
+                    <lable>当前课程：</lable>
+                    <div class="btn-group">
+                    <button class="btn glow">Drop down</button>
+                    <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    </button>
+                        <ul class="dropdown-menu">
+                        <li><a href="#">Option one</a></li>
+                        <li><a href="#">Option two</a></li>
+                        <li><a href="#">Option three</a></li>
+                        <li><a href="#">Option four</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="row-fluid profile">
+                <!-- bio, new note & orders column -->
+                <div class="span9 bio">
+                <div class="profile-box">
+                <!-- imformation -->
+                <div class="span12 section">
+                <h6>课程信息</h6>
+                <lable class="">姓名： </lable>
+                <span>爪老师</span>
+                <div class="clear"></div>
+                <lable> ID ： </lable>
+                <span>123456</span>
+                <div class="clear"></div>
+                </div>
+                
+                <h6>课程统计</h6>
+              
+                </div>
+                </div>
+                </div>
+                
+                <!-- morris bar & donut charts -->
+                <div class="row-fluid section">
+                <h4 class="title">
+                </h4>
+                <div class="span6 chart">
+                <h5>条形图</h5>
+                <div id="hero-bar" style="height: 250px;"></div>
+                </div>
+                <div class="span5 chart">
+                <h5>饼形图</h5>
+                <div id="hero-donut" style="height: 250px;"></div>
+                </div>
+                </div>
+                
+            </div>
+        </div>
+        <!--end content-fluid-->
+    </div>
+    <!-- end main container -->
+
+
+	<!-- scripts -->
+    <script src="js/theme.js"></script>
+    <script src="js/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+    <!-- knob -->
+    <script src="js/jquery.knob.js"></script>
+    <!-- flot charts -->
+    <script src="js/jquery.flot.js"></script>
+    <script src="js/jquery.flot.stack.js"></script>
+    <script src="js/jquery.flot.resize.js"></script>
+    <!-- morrisjs -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="js/morris.min.js"></script>
+    <!-- call all plugins -->
+    <script src="js/theme.js"></script>
+    
+    <!-- build the charts -->
+    <script type="text/javascript">
+    
+    // Morris Bar Chart
+    Morris.Bar({
+    element: 'hero-bar',
+    data: [
+    {device: '<60', sells: 136},
+    {device: '60-70', sells: 1037},
+    {device: '70-80', sells: 275},
+    {device: '80-90', sells: 380},
+    {device: '90-100', sells: 655}
+    ],
+    xkey: 'device',
+    ykeys: ['sells'],
+    labels: ['People'],
+    barRatio: 0.4,
+    xLabelMargin: 10,
+    hideHover: 'auto',
+    barColors: ["#3d88ba"]
+    });
+    
+    
+    // Morris Donut Chart
+    Morris.Donut({
+    element: 'hero-donut',
+    data: [
+    {label: '<60', value: 25 },
+    {label: '60-70', value: 40 },
+    {label: '70-80', value: 25 },
+    {label: '80-90', value: 10 },
+    {label: '90-100', value: 10 }],
+    colors: ["#30a1ec", "#76bdee", "#c4dafe"],
+    formatter: function (y) { return y + "%" }
+    });
+    
+
+    // Build jQuery Knobs
+    $(".knob").knob();
+    
+    
+    
+    //  jQuery Flot Chart
+    var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];
+    var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 38],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,47],[12, 39]];
+    
+    var plot = $.plot($("#statsChart"),
+    [ { data: visits, label: "Signups"},
+    { data: visitors, label: "Visits" }], {
+    series: {
+    lines: { show: true,
+    lineWidth: 1,
+    fill: true,
+    fillColor: { colors: [ { opacity: 0.05 }, { opacity: 0.09 } ] }
+    },
+    points: { show: true,
+    lineWidth: 2,
+    radius: 3
+    },
+    shadowSize: 0,
+    stack: true
+    },
+    grid: { hoverable: true,
+    clickable: true,
+    tickColor: "#f9f9f9",
+    borderWidth: 0
+    },
+    legend: {
+    // show: false
+    labelBoxBorderColor: "#fff"
+    },
+    colors: ["#a7b5c5", "#30a0eb"],
+    xaxis: {
+    ticks: [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4,"APR"], [5,"MAY"], [6,"JUN"],
+    [7,"JUL"], [8,"AUG"], [9,"SEP"], [10,"OCT"], [11,"NOV"], [12,"DEC"]],
+    font: {
+    size: 12,
+    family: "Open Sans, Arial",
+    variant: "small-caps",
+    color: "#9da3a9"
+    }
+    },
+    yaxis: {
+    ticks:3,
+    tickDecimals: 0,
+    font: {size:12, color: "#9da3a9"}
+    }
+    });
+    
+    function showTooltip(x, y, contents) {
+    $('<div id="tooltip">' + contents + '</div>').css( {
+    position: 'absolute',
+    display: 'none',
+    top: y - 30,
+    left: x - 50,
+    color: "#fff",
+    padding: '2px 5px',
+    'border-radius': '6px',
+    'background-color': '#000',
+    opacity: 0.80
+    }).appendTo("body").fadeIn(200);
+    }
+    
+    var previousPoint = null;
+    $("#statsChart").bind("plothover", function (event, pos, item) {
+    if (item) {
+    if (previousPoint != item.dataIndex) {
+    previousPoint = item.dataIndex;
+    
+    $("#tooltip").remove();
+    var x = item.datapoint[0].toFixed(0),
+    y = item.datapoint[1].toFixed(0);
+    
+    var month = item.series.xaxis.ticks[item.dataIndex].label;
+    
+    showTooltip(item.pageX, item.pageY,
+    item.series.label + " of " + month + ": " + y);
+    }
+    }
+    else {
+    $("#tooltip").remove();
+    previousPoint = null;
+    }
+    });
+    </script>
+
+</body>
+</html>
