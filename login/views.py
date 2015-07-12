@@ -4,9 +4,9 @@ from django.shortcuts import render,render_to_response
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import RequestContext
 from django import forms
+from django.forms import ModelForm 
 from models import StudentInfo
 from models import TeacherInfo
-
 from models import StudentCourse
 
 #表单
@@ -73,7 +73,6 @@ class change_pwd_form(forms.Form):
                                   widget=forms.PasswordInput(attrs={'placeholder' : '确认密码'}),)
     def clean(self):
         if not self.is_valid():
-            print 3213213213
             raise forms.ValidationError(u"所有项都为必填项")
         elif self.cleaned_data['newpassword1'] <> self.cleaned_data['newpassword2']:
             raise forms.ValidationError(u"两次输入的新密码不一样")
@@ -89,11 +88,10 @@ def s_change_password(req):
             oldpassword = req.POST.get('oldpassword', '')
             newpassword = req.POST.get('newpassword1', '')
             user = StudentInfo.objects.filter(student_ID__exact = username,password__exact = oldpassword)
-            for i in user: ans = i
-            ans.password = newpassword
-            ans.save()
             if user:
-                
+                for i in user: ans = i
+                ans.password = newpassword
+                ans.save()
                 return render_to_response('s-change-password.html',{'form':form, 'change_success' : True},context_instance=RequestContext(req))
             else:
                 return render_to_response('s-change-password.html',{'form':form, 'oldpassword_is_wrong' : True},context_instance=RequestContext(req))
@@ -117,6 +115,65 @@ def t_profile(req):
     for i in list(user): ans = i
     t = {'teacher_ID':ans.teacher_ID, 'teacher_name':ans.teacher_name, 't_department':ans.t_department}
     return render_to_response('t-profile.html', t)
+
+class update_grade_form(ModelForm):
+    class Meta:
+        model = StudentCourse
+        fields = ('course_ID', 'student_ID', 'course_grade')
+
+def t_grade_list(req):
+    form = update_grade_form(req.POST)
+    if req.method == 'POST':
+        if form.is_valid():
+            username = req.COOKIES.get('username','')
+            courseID = req.POST.get('course_ID', '')
+            studentID = req.POST.get('student_ID', '')
+            coursegrade = req.POST.get('course_grade', '')
+            user = StudentCourse.objects.filter(teacher_ID__exact = username, course_ID__exact = courseID, student_ID__exact = studentID)
+            print type(user)
+            ans = None
+            for i in list(user): ans = i
+            if ans:
+                ans.course_grade = coursegrade
+                ans.save()
+                return render_to_response('t-grade-list.html',{'form':form, 'change_success' : True},context_instance=RequestContext(req))
+            else:
+                return render_to_response('t-grade-list.html',{'form':form, 'not_exist' : True},context_instance=RequestContext(req))
+        else:
+            return render_to_response('t-grade-list.html',{'form':form, 'not_finish': True},context_instance=RequestContext(req))
+    return render_to_response('t-grade-list.html',{'form':form},context_instance=RequestContext(req))
+
+class choose_course_form(ModelForm):
+    class Meta:
+        model = StudentCourse
+        fields = ('course_ID', )
+        
+def t_course_list(req):
+    count = {}
+    count['stat9'] = 0
+    count['stat8'] = 0
+    count['stat7'] = 0
+    count['stat6'] = 0
+    count['stat5'] = 0
+    form = choose_course_form(req.POST)
+    if req.method == 'POST':
+        if form.is_valid():
+            username = req.COOKIES.get('username','')
+            courseID = req.POST.get('course_ID', '')
+            user = StudentCourse.objects.filter(teacher_ID__exact = username, course_ID__exact = courseID)
+            for i in list(user):
+                if i >= 90: count['stat9'] += 1
+                elif i >= 80: count['stat8'] += 1
+                elif i >= 70: count['stat7'] += 1
+                elif i >= 60: count['stat6'] += 1
+                else : count['stat5'] += 1
+            count['form'] = form
+            return render(req, 't-course-list.html', count)
+        else:
+            return render_to_response('t-course-list.html',{'form':form, 'not_exist' : True},context_instance=RequestContext(req))
+    return render(req, 't-course-list.html', {'form':form,})
+
+
 
 def logout(req):
     response = HttpResponseRedirect('/login/')

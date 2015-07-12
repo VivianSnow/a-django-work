@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
 <head>
 	<title>Detail Admin - User list</title>
@@ -6,21 +7,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
     <!-- bootstrap -->
-    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap/bootstrap.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap/bootstrap-responsive.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap/bootstrap-overrides.css' %}" type="text/css" rel="stylesheet" />
 
     <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="css/layout.css" />
-    <link rel="stylesheet" type="text/css" href="css/elements.css" />
-    <link rel="stylesheet" type="text/css" href="css/icons.css" />
+    <link rel="stylesheet" type="text/css" href= "{%static 'css/layout.css' %}" />
+    <link rel="stylesheet" type="text/css" href= "{%static 'css/elements.css' %}" />
+    <link rel="stylesheet" type="text/css" href= "{%static 'css/icons.css' %}"/>
 
     <!-- libraries -->
-    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    <link href="{% static 'css/lib/font-awesome.css' %}" type="text/css" rel="stylesheet" />
     
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="css/compiled/user-list.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/compiled/user-profile.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/compiled/user-list.css' %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{% static 'css/compiled/user-profile.css' %}" type="text/css" media="screen" />
 
     <!-- open sans font -->
     <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
@@ -40,11 +41,11 @@
 <span class="icon-bar"></span>
 </button>
 
-<a class="brand" href="index.html"><img src="img/logo.png" /></a>
+<a class="brand" href="/login/t-index/"><img src="{% static 'img/logo.png' %}" /></a>
 
 <ul class="nav pull-right">
 <li class="settings hidden-phone">
-<a href="signin.html" role="button">
+<a href="/login/logout/" role="button">
 <i class="icon-share-alt"></i>
 </a>
 </li>
@@ -60,13 +61,13 @@
 <div id="sidebar-nav">
 <ul id="dashboard-menu">
 <li>
-<a href="t-index.html">
+<a href="/login/t-index/">
 <i class="icon-home"></i>
 <span>首页</span>
 </a>
 </li>
 <li>
-<a href="t-grade-list.html">
+<a href="/login/t-grade-list/">
 <i class="icon-signal"></i>
 <span>成绩管理</span>
 </a>
@@ -76,13 +77,13 @@
 <div class="arrow"></div>
 <div class="arrow_border"></div>
 </div>
-<a href="t-course-list.html">
+<a href="/login/t-course-list/">
 <i class="icon-edit"></i>
 <span>课程管理</span>
 </a>
 </li>
 <li>
-<a href="t-profile.html">
+<a href="/login/t-profile/">
 <i class="icon-cog"></i>
 <span>我的信息</span>
 </a>
@@ -100,7 +101,15 @@
                 <div class="row-fluid header">
                     <h3>课程管理</h3>
                 </div>
-                <!--drop list-->
+				
+			<form method = 'post' enctype="{%static 'multipart/form-data' %}">
+                <!-- statistics chart built with jQuery Flot -->
+						<div class="span10 pull-right">
+							{{form.course_ID}}
+							<br></br>
+							<input type="submit" value = "确认"  class="btn-glow primary login"/>
+						</div>
+<!-- 			</form>
                 <div class="span10 pull-right">
                     <lable>当前课程：</lable>
                     <div class="btn-group">
@@ -115,14 +124,15 @@
                         <li><a href="#">Option four</a></li>
                         </ul>
                     </div>
-                </div>
-                
+                </div> -->
+                <br>
+				</br>
                 <div class="row-fluid profile">
                 <!-- bio, new note & orders column -->
                 <div class="span9 bio">
                 <div class="profile-box">
                 <!-- imformation -->
-                <div class="span12 section">
+<!--                 <div class="span12 section">
                 <h6>课程信息</h6>
                 <lable class="">姓名： </lable>
                 <span>爪老师</span>
@@ -130,10 +140,10 @@
                 <lable> ID ： </lable>
                 <span>123456</span>
                 <div class="clear"></div>
-                </div>
+                </div> -->
                 
+				
                 <h6>课程统计</h6>
-              
                 </div>
                 </div>
                 </div>
@@ -160,21 +170,21 @@
 
 
 	<!-- scripts -->
-    <script src="js/theme.js"></script>
-    <script src="js/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/jquery-latest.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui-1.10.2.custom.min.js' %}"></script>
     <!-- knob -->
-    <script src="js/jquery.knob.js"></script>
+    <script src="{% static 'js/jquery.knob.js' %} "></script>
     <!-- flot charts -->
-    <script src="js/jquery.flot.js"></script>
-    <script src="js/jquery.flot.stack.js"></script>
-    <script src="js/jquery.flot.resize.js"></script>
+    <script src="{% static 'js/jquery.flot.js' %} "></script>
+    <script src="{% static 'js/jquery.flot.stack.js' %} "></script>
+    <script src="{% static 'js/jquery.flot.resize.js' %} "></script>
     <!-- morrisjs -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="js/morris.min.js"></script>
+    <script src="{% static 'js/morris.min.js' %} "></script>
     <!-- call all plugins -->
-    <script src="js/theme.js"></script>
+    <script src="{% static 'js/theme.js' %} "></script>
     
     <!-- build the charts -->
     <script type="text/javascript">
@@ -183,11 +193,11 @@
     Morris.Bar({
     element: 'hero-bar',
     data: [
-    {device: '<60', sells: 136},
-    {device: '60-70', sells: 1037},
-    {device: '70-80', sells: 275},
-    {device: '80-90', sells: 380},
-    {device: '90-100', sells: 655}
+    {device: '<60', sells: {{stat5}} },
+    {device: '60-70', sells: {{stat6}} },
+    {device: '70-80', sells: {{stat7}} },
+    {device: '80-90', sells: {{stat8}} },
+    {device: '90-100', sells: {{stat9}} }
     ],
     xkey: 'device',
     ykeys: ['sells'],
@@ -203,11 +213,11 @@
     Morris.Donut({
     element: 'hero-donut',
     data: [
-    {label: '<60', value: 25 },
-    {label: '60-70', value: 40 },
-    {label: '70-80', value: 25 },
-    {label: '80-90', value: 10 },
-    {label: '90-100', value: 10 }],
+    {label: '<60', value: {{stat5}} },
+    {label: '60-70', value: {{stat6}} },
+    {label: '70-80', value: {{stat7}} },
+    {label: '80-90', value: {{stat8}} },
+    {label: '90-100', value: {{stat9}} }],
     colors: ["#30a1ec", "#76bdee", "#c4dafe"],
     formatter: function (y) { return y + "%" }
     });

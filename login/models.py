@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.auth.hashers import make_password
 
 class StudentInfo(models.Model):
-    student_ID = models.IntegerField(max_length = 10, primary_key = True, verbose_name = "学号")
+    student_ID = models.IntegerField(primary_key = True, verbose_name = "学号")
     student_name = models.CharField(max_length = 20, verbose_name = "姓名")
     student_birth = models.DateField(verbose_name = "生日")
     student_gender = models.CharField(max_length = 6, choices = ((u'male', '男'), (u'female', '女'),), verbose_name = "性别")
@@ -20,7 +20,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 class TeacherInfo(models.Model):
-    teacher_ID = models.IntegerField(max_length = 8, primary_key = True, verbose_name = "教工号")
+    teacher_ID = models.IntegerField(primary_key = True, verbose_name = "教工号")
     teacher_name = models.CharField(max_length = 20, verbose_name = "姓名")
     t_department = models.CharField(max_length = 20, verbose_name = "学院")
     password = models.CharField(max_length = 40)#, default = make_password("0000", None, 'pbkdf2_sha256'))
@@ -49,7 +49,7 @@ class CourseInfo(models.Model):
     teacher_ID = models.ForeignKey('TeacherInfo')
 
     def __unicode__(self):
-        return self.course_ID
+        return '%s %s' %(self.course_ID, self.course_name)
 
 
 class CourseAdmin(admin.ModelAdmin):
