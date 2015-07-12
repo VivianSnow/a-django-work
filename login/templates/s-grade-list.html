@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load render_table from django_tables2 %}
+{% load staticfiles %}
 <html>
 <head>
 	<title>Detail Admin - User list</title>
@@ -6,20 +8,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
     <!-- bootstrap -->
-    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap/bootstrap.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap/bootstrap-responsive.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap/bootstrap-overrides.css' %}" type="text/css" rel="stylesheet" />
 
     <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="css/layout.css" />
-    <link rel="stylesheet" type="text/css" href="css/elements.css" />
-    <link rel="stylesheet" type="text/css" href="css/icons.css" />
+    <link rel="stylesheet" type="text/css" href= "{%static 'css/layout.css' %}" />
+    <link rel="stylesheet" type="text/css" href= "{%static 'css/elements.css' %}" />
+    <link rel="stylesheet" type="text/css" href= "{%static 'css/icons.css' %}"/>
 
     <!-- libraries -->
-    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    <link href="{%static 'css/lib/font-awesome.css' %}" type="text/css" rel="stylesheet" />
     
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="css/compiled/user-list.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{%static 'css/compiled/user-list.css' %}" type="text/css" media="screen" />
 
     <!-- open sans font -->
     <link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
@@ -39,7 +41,7 @@
 <span class="icon-bar"></span>
 </button>
 
-<a class="brand" href="index.html"><img src="img/logo.png" /></a>
+<a class="brand" href="/login/index/"><img src="{% static 'img/logo.png' %}" /></a>
 
 <ul class="nav pull-right">
 <li class="settings hidden-phone">
@@ -59,7 +61,7 @@
     <div id="sidebar-nav">
         <ul id="dashboard-menu">
             <li>
-                <a href="s-index.html">
+                <a href="/login/s-index/">
                     <i class="icon-home"></i>
                     <span>首页</span>
                 </a>
@@ -69,13 +71,13 @@
                     <div class="arrow"></div>
                     <div class="arrow_border"></div>
                 </div>
-                <a href="s-grade-list.html">
+                <a href="/login/s-grade-list/">
                     <i class="icon-signal"></i>
                     <span>我的成绩</span>
                 </a>
             </li>
             <li>
-            <a href="s-profile.html">
+            <a href="/login/s-profile/">
             <i class="icon-cog"></i>
             <span>我的信息</span>
             </a>
@@ -93,16 +95,17 @@
                 <div class="row-fluid header">
                     <h3>我的成绩</h3>
                 </div>
-                <div class="span10 pull-right">
+<!--                 <div class="span10 pull-right">
                     <input type="text" class="span5 search" placeholder="请输入查询的课程" />
                     <td><a class="btn-glow">搜索</a></td>
-                </div>
+                </div> -->
             </div>
         </div>
 
                 <!-- Users table -->
                 <div class="row-fluid table">
-                    <table class="table table-hover">
+					{% render_table StudentInfo %}
+<!--                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th class="span4 sortable">
@@ -114,7 +117,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <!-- row -->
                         <tr class="first">
                             <td>
                                 <a href="user-profile.html" class="name">编译原理 </a>
@@ -152,9 +154,9 @@
                         </td>
                         </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                 </div>
-                <div class="pagination pull-right">
+<!--                 <div class="pagination pull-right">
                     <ul>
                         <li><a href="#">&#8249;</a></li>
                         <li><a class="active" href="#">1</a></li>
@@ -164,7 +166,7 @@
                         <li><a href="#">5</a></li>
                         <li><a href="#">&#8250;</a></li>
                     </ul>
-                </div>
+                </div> -->
                 <!-- end users table -->
             </div>
         </div>
@@ -173,9 +175,9 @@
 
 
 	<!-- scripts -->
-    <script src="js/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/theme.js"></script>
+    <script src="{%static 'js/jquery-latest.js' %}"></script>
+    <script src="{%static 'js/bootstrap.min.js' %}"></script>
+    <script src="{%static 'js/theme.js' %}"></script>
 
 </body>
 </html>
