@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load render_table from django_tables2 %}
 {% load staticfiles %}
 <html>
 <head>
@@ -141,7 +142,8 @@
                 <span>123456</span>
                 <div class="clear"></div>
                 </div> -->
-                
+			
+
 				
                 <h6>课程统计</h6>
                 </div>
@@ -160,6 +162,11 @@
                 <h5>饼形图</h5>
                 <div id="hero-donut" style="height: 250px;"></div>
                 </div>
+				{% if is_success %}
+				<div class="span10 row-fluid table">
+					{% render_table table %}			
+                </div>
+				{% endif %}
                 </div>
                 
             </div>

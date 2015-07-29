@@ -59,7 +59,7 @@ class StudentCourse(models.Model):
     student_ID = models.ForeignKey('StudentInfo')
     course_ID = models.ForeignKey('CourseInfo')
     teacher_ID = models.ForeignKey('TeacherInfo')
-    course_grade = models.IntegerField(verbose_name = "成绩")
+    course_grade = models.IntegerField(null = True, blank = True, verbose_name = "成绩")
 
     def __unicode__(self):
         return str(self.course_grade)

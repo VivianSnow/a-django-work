@@ -140,15 +140,27 @@
 					{% endif %}
 			</div>
 		
-			<form method = 'post' enctype="{%static 'multipart/form-data' %}">
+			<form method = 'post' enctype="multipart/form-data">
                 <!-- statistics chart built with jQuery Flot -->
 						<div class="span10 pull-right">
 							{{form.as_p}}
 							<br>
 							</br>
-							<input type="submit" value = "修改"  class="btn-glow primary login"/>
+							<div>
+							<input type="submit" value = "修改"  name = "submit" class="btn-glow primary login"/>
+							</div>
+							<br>
+							</br>
+							<input type="submit" value = "下载表单" name = 'download' class="btn-glow primary login"/>
+							<br>
+							</br>
+							{{upload_form.csv.label}}
+							{{upload_form.csv}}
+							<input type="submit" value = "上传" name = 'upload' class="btn-glow primary login"/>
 						</div>
 			</form>
+			
+			
 				
 				
                 <!-- Users table -->

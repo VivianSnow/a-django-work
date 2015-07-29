@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^t-index/$', views.t_index, name = 't-index'),
     url(r'^t-profile/$', views.t_profile, name = 't-profile'),
     url(r's-change-password/$', views.s_change_password, name = 's-change-password'),
+    url(r't-change-password/$', views.t_change_password, name = 't-change-password'),
     url(r't-grade-list/$', views.t_grade_list, name = 't-grade-list'),
     url(r't-course-list/$', views.t_course_list, name = 't-course-list'),
 )
